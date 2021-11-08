@@ -3,7 +3,7 @@ import discord
 from discord.ext.commands import Bot
 import RPi.GPIO as GPIO            # import RPi.GPIO module  
 from time import sleep             # lets us have a delay  
-GPIO.setmode(GPIO.BCM)             # choose BCM or BOARD  
+GPIO.setmode(GPIO.BOARD)             # choose BCM or BOARD  
 GPIO.setup(8, GPIO.OUT)           # set GPIO24 as an output   
  
 BOT_PREFIX='-'
