@@ -21,7 +21,7 @@ def opendoor():
 @bot.group(pass_context=True)
 async def door(ctx):
     if ctx.invoked_subcommand is None:
-    	await bot.send_message(ctx.message.channel, "Do what with the door?")
+    	await ctx.message.channel.send("Do what with the door?")
 
 @door.command(name="Open Door",
                 description="Opens the door to robotics club",
@@ -31,7 +31,7 @@ async def door(ctx):
 async def open(context):
     opendoor()
     msg = "Unlocking door now!"
-    await bot.send_message(context.message.channel, msg)
+    await context.message.channel.send(msg)
 
 
 bot.run(TOKEN)
