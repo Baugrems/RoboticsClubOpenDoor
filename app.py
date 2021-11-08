@@ -44,7 +44,7 @@ async def on_message(message):
         opendoor()
         msg = "Unlocking door now!"
         await message.channel.send(msg)
-    elif message.content == "door close":
+    if message.content == "door close":
         closedoor()
         msg = "Locking door now!"
         await message.channel.send(msg)
