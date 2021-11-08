@@ -11,19 +11,17 @@ BOT_PREFIX='-'
 TOKEN = (os.environ['TOKEN'])
 bot = Bot(command_prefix=BOT_PREFIX)
 servo = Servo(14)
+servo.value = 0
 
 def opendoor():
     # GPIO.output(8, 1)         # set GPIO8 to 1/GPIO.HIGH/True  
     # sleep(0.5)                 # wait half a second  
     # GPIO.output(8, 0)         # set GPIO8 to 0/GPIO.LOW/False  
-    # sleep(0.5)                 # wait half a second 
-    while(True):
-        servo.max()
-        sleep(15)
-        servo.min()
-        sleep(15)
-        servo.mid()
-        sleep(15)
+    # sleep(0.5)                 # wait half a second
+    servo.min()
+
+def closedoor():
+    servo.max()
     
 
 # @bot.group(pass_context=True)
@@ -45,6 +43,10 @@ async def on_message(message):
     if message.content == "door open":
         opendoor()
         msg = "Unlocking door now!"
+        await message.channel.send(msg)
+    elif message.content == "door close":
+        closedoor()
+        msg = "Locking door now!"
         await message.channel.send(msg)
 
 bot.run(TOKEN)
