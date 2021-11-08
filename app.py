@@ -17,13 +17,14 @@ def opendoor():
     # sleep(0.5)                 # wait half a second  
     # GPIO.output(8, 0)         # set GPIO8 to 0/GPIO.LOW/False  
     # sleep(0.5)                 # wait half a second 
-    servo.min()
-    sleep(1)
-    servo.mid()
-    sleep(1)
-    servo.max()
-    sleep(1)
-    servo.min()
+    while(True):
+        servo.max()
+        sleep(15)
+        servo.min()
+        sleep(15)
+        servo.mid()
+        sleep(15)
+    
 
 # @bot.group(pass_context=True)
 # async def door(ctx):
