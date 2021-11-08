@@ -19,6 +19,8 @@ def opendoor():
     # sleep(0.5)                 # wait half a second 
     servo.min()
     sleep(1)
+    servo.mid()
+    sleep(1)
     servo.max()
     sleep(1)
     servo.min()
