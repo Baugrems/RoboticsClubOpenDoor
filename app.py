@@ -18,20 +18,25 @@ def opendoor():
     GPIO.output(24, 0)         # set GPIO24 to 0/GPIO.LOW/False  
     sleep(0.5)                 # wait half a second 
 
-@bot.group(pass_context=True)
-async def door(ctx):
-    if ctx.invoked_subcommand is None:
-    	await ctx.message.channel.send("Do what with the door?")
+# @bot.group(pass_context=True)
+# async def door(ctx):
+#     if ctx.invoked_subcommand is None:
+#     	await ctx.message.channel.send("Do what with the door?")
 
-@door.command(name="Open Door",
-                description="Opens the door to robotics club",
-                brief="Open the door",
-                aliases=["open, access, go"],
-                pass_context=True)
-async def open(context):
-    opendoor()
-    msg = "Unlocking door now!"
-    await context.message.channel.send(msg)
+# @door.command(name="Open Door",
+#                 description="Opens the door to robotics club",
+#                 brief="Open the door",
+#                 aliases=["open, access, go"],
+#                 pass_context=True)
+# async def open(context):
+#     opendoor()
+    
 
+@bot.event
+async def on_message(message):
+    if message.contains == "door open":
+        opendoor()
+        msg = "Unlocking door now!"
+        await message.channel.send(msg)
 
 bot.run(TOKEN)
