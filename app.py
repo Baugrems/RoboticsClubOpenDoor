@@ -1,7 +1,8 @@
 import os
 import discord
 from discord.ext.commands import Bot
-import RPi.GPIO as GPIO            # import RPi.GPIO module  
+import RPi.GPIO as GPIO            # import RPi.GPIO module
+from gpiozero import Servo  
 from time import sleep             # lets us have a delay  
 GPIO.setmode(GPIO.BOARD)             # choose BCM or BOARD  
 GPIO.setup(8, GPIO.OUT)           # set GPIO24 as an output   
@@ -9,13 +10,20 @@ GPIO.setup(8, GPIO.OUT)           # set GPIO24 as an output
 BOT_PREFIX='-'
 TOKEN = (os.environ['TOKEN'])
 bot = Bot(command_prefix=BOT_PREFIX)
- 
+servo = Servo(14)
 
 def opendoor():
-    GPIO.output(8, 1)         # set GPIO8 to 1/GPIO.HIGH/True  
-    sleep(0.5)                 # wait half a second  
-    GPIO.output(8, 0)         # set GPIO8 to 0/GPIO.LOW/False  
-    sleep(0.5)                 # wait half a second 
+    # GPIO.output(8, 1)         # set GPIO8 to 1/GPIO.HIGH/True  
+    # sleep(0.5)                 # wait half a second  
+    # GPIO.output(8, 0)         # set GPIO8 to 0/GPIO.LOW/False  
+    # sleep(0.5)                 # wait half a second 
+    servo.min()
+    sleep(0.5)
+    servo.mid()
+    sleep(0.5)
+    servo.max()
+    sleep(0.5)
+    servo.min()
 
 # @bot.group(pass_context=True)
 # async def door(ctx):
