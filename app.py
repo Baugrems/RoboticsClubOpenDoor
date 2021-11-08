@@ -34,7 +34,7 @@ def opendoor():
 
 @bot.event
 async def on_message(message):
-    if message.content.contains == "door open":
+    if message.content == "door open":
         opendoor()
         msg = "Unlocking door now!"
         await message.channel.send(msg)
